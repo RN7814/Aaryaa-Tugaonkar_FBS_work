@@ -8,7 +8,6 @@ void main(){
         t2=t2*10+t1;
         a=a/10;   
     }
-    printf("Reversed Number: %d",t2);
     if(t2==t3){
         printf("\nThe number is a palindrome");
     } else {
