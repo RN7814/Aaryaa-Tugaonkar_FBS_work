@@ -76,11 +76,14 @@ void main (){
         printf("%d is Reversed no",t2);
     }
     else if(x==6){
-        int n;
+        int n,no;
         printf("Enter a NO : ");
         scanf("%d",&n);
-        int tno,sum=0;
-        for (;n!=0;tno=n%10)
-            sum=tno+sum;
+        int sum=0;
+       while(n!=0){
+         no=n%10;
+        sum=no+sum;
+        n=n/10;
+       }
         printf("The Sum of Digits = %d",sum);
         }}
