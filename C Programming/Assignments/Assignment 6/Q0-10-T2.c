@@ -13,5 +13,5 @@ float per;
 total=a+b+c+d+e;
 per=total/5.0;
 printf("Total = %d\n",total);
-printf("Percentage = %f",per);
+printf("Percentage = %f %",per);
 }
