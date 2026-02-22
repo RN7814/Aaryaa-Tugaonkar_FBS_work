@@ -1,10 +1,14 @@
-void table();
+//Find factorial of given number.
+
 void main()
 {
-    int n=5;
-    for (int i;i<=10;i++){
-    int t;
-    t=n*i;
-    printf("%d\n",t);
-        }
+    int n;
+    printf("Enter a no : ");
+    scanf("%d",&n);
+    int t=1;
+    for(int i=1;i!=n;i++)
+    {
+        t=t*i;
+    }
+    printf("%d is factorial of yo no",t)
 }
