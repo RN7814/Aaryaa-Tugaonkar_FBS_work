@@ -16,5 +16,5 @@ void main() {
         printf("The number is not divisible by either");
     }
 
-    return 0;
+   
 }
