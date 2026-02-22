@@ -1,0 +1,10 @@
+void table();
+void main()
+{
+    int n=5;
+    for (int i;i<=10;i++){
+    int t;
+    t=n*i;
+    printf("%d\n",t);
+        }
+}
