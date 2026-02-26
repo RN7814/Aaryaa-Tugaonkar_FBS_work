@@ -1,0 +1,61 @@
+# Assignment 7 — Type-3 Functions (With Parameter, Without Return Type) Using Pointer
+
+## 🔹 Assignment 1 (7 Programs)
+
+1. Write a program to check whether a number is even or odd.
+2. Write a program to check whether a given 3-digit number is palindrome or not.
+3. Write a program to check whether a given year is a leap year.
+4. Write a program to check whether a given character is a vowel or consonant.
+5. Write a program to check whether a person is eligible to vote (age ≥ 18).
+6. Write a program to check whether a given character is uppercase or lowercase.
+7. Write a program to calculate total salary based on basic salary (DA, TA, HRA conditions).
+
+---
+
+## 🔹 Assignment 2 (7 Programs)
+
+8. Accept two numbers and an operator (+, -, *, /, %) and perform the operation.
+9. Accept three sides of a triangle and determine whether it is equilateral, isosceles, or scalene.
+10. Write a program to find the greatest of three numbers using nested if-else.
+11. Accept marks and display result (Distinction / First Class / Second Class / Pass / Fail).
+12. Accept price and student status and calculate discount according to conditions.
+13. Accept a number and check whether it is divisible by 3, 5, both, or none.
+14. Accept age and classify as Child / Teenager / Adult / Senior.
+
+---
+
+## 🔹 Assignment 3 (Type-3 Only — Range Program Excluded)
+
+15. Print numbers from 1 to 10.
+16. Print table of a given number.
+17. Check whether a number is prime or not.
+18. Check whether a number is Armstrong or not.
+19. Check whether a number is Perfect or not.
+20. Find factorial of a number.
+21. Check whether a number is Strong number or not.
+22. Check whether a number is Palindrome or not.
+23. Find sum of first and last digit of a number.
+
+---
+
+## 🔹 Assignment 4 (Type-3 Functions)
+
+24. Print Armstrong numbers in the range 1 to n.
+25. Print Prime numbers in the range 1 to n.
+26. Print Perfect numbers in the range 1 to n.
+27. Print Strong numbers in the range 1 to n.
+28. Menu-driven program to perform:
+
+* Even or Odd
+* Prime or Not
+* Palindrome or Not
+* Positive / Negative / Zero
+* Reverse a Number
+* Sum of Digits
+
+---
+
+## ⭐ Total Programs for Assignment 7
+
+**28 Programs**
+(All should be implemented using **Type-3 Functions** → *with parameter, without return type*, using **pointers**.)
