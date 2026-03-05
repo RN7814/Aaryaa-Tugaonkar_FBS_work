@@ -23,5 +23,5 @@ void result(int *marks)
     else if(*marks >= 35)
         printf("Pass");
     else
-        printf("Fail")
+        printf("Fail");
 }
