@@ -1,0 +1,16 @@
+void pali();
+void main(){
+    pali();
+}
+void pali(){
+    int a;
+    printf("Enter a no: ");
+    scanf("%d",&a);
+    int x=a%10;
+	int y=a/100;
+	if(x==y){
+		printf("Pallindrome");
+	}else{
+		printf("not pali");
+	}
+}

@@ -1,0 +1,9 @@
+void main(){
+    int i=1,a,add=0;
+    while(i<=5){
+        a=i;
+        add+a;
+        i++;
+    }
+    print("%d",add);
+}
