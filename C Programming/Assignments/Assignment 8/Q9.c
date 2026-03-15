@@ -11,8 +11,8 @@ void main ()
     for(int i=0,j=size-1 ;i<size ; i++ , j--)
     rev[i]=arr1[j];
 
-    for(int l=0 ; l < size ; l++);
-    printf("%d\n",rev[l]);
+    for(int i=0 ; i<size ; i++)
+    printf("%d \n",rev[i]);
 
 
 }
