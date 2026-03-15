@@ -1,20 +1,15 @@
-//4. Find odd and even among the numbers. 
+#include <stdio.h>
+int main() {
+    int arr[] = {30, 25, 42, 68, 31, 58, 75, 77, 98, 18};
+    int size = sizeof(arr) / sizeof(int);
 
-#include<stdio.h>
+    printf("Even numbers:\n");
+    for (int i = 0; i < size; i++)
+        if (arr[i] % 2 == 0) printf("%d\n", arr[i]);
 
-void main()
-{
-    int no[10]={30,25,42,68,31,58,75,77,98,18};
-    printf("Evens :\n");
-    for(int i=0 ; i<10 ;i++)
-    {
-        if(no[i]%2==0)
-        printf("    %d\n",no[i]);
-    }
-    printf("odds :\n");
-    for(int i=0 ; i<10 ;i++)
-    {
-        if(no[i]%2!=0)
-        printf("    %d\n",no[i]);
-    }
+    printf("Odd numbers:\n");
+    for (int i = 0; i < size; i++)
+        if (arr[i] % 2 != 0) printf("%d\n", arr[i]);
+
+    return 0;
 }

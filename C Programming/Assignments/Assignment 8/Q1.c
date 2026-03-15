@@ -1,48 +1,15 @@
-//1. Find minimum and maximum number in array.  
-#include<stdio.h>
-int mini( int arr[] , int ,int*);
-int maxi( int arr[], int, int*);
-void main ()
-{
-    int arr[]={4,5,6,8,4,2,10};
-    int min=arr[0],max=arr[0];
-    int size=sizeof(arr)/sizeof(int);
+#include <stdio.h>
+int main() {
+    int arr[] = {4, 5, 6, 8, 4, 2, 10};
+    int size = sizeof(arr) / sizeof(int);
+    int min = arr[0], max = arr[0];
 
-  //  for(int i = 0; i < size; i++)
-  //  {
-  //      if( arr[i]<= min)
-  //      min=arr[i];
-  //  }
-
-  //  for(int i = 0; i < size; i++)
-  //  {
-  //      if( arr[i]>= max)
-  //      max=arr[i];
-  // }
-
-    printf("%d,is the minimum NO\n",mini(arr,size , &min));
-    printf("%d,is the maximum NO",maxi(arr,size , &max));
-
-}
-
-int mini(int trr[],int size ,int * ptr)
-{
-for(int i = 0; i < size; i++)
-    {
-        if( trr[i]<= *ptr)
-        *ptr=trr[i];
- 
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
     }
-    return *ptr;
-}
 
-int maxi(int trr[],int size ,int * ptr)
-{
-for(int i = 0; i < size; i++)
-    {
-        if( trr[i]>= *ptr)
-        *ptr=trr[i];
- 
-    }
-    return *ptr;
+    printf("Minimum: %d\n", min);
+    printf("Maximum: %d\n", max);
+    return 0;
 }

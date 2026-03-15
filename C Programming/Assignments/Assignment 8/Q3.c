@@ -1,21 +1,12 @@
-//3. Find sum of all numbers. 
-#include<stdio.h>
-int sum(int*,int);
+#include <stdio.h>
+int main() {
+    int arr[] = {10, 12, 14, 158, 147, 168, 15, 52};
+    int size = sizeof(arr) / sizeof(int);
+    int sum = 0;
 
-void main ()
-{
-    int add[]={10,12,14,158,147,168,15,52};
-    int tot=sum(&add[0],sizeof(add)/sizeof(int));
-    printf("%d is the total",tot);
+    for (int i = 0; i < size; i++)
+        sum += arr[i];
 
-}
-int sum( int * ptr,int size)
-{
-    int addi=0;
-    for(int i=0; i<size;i++)
-    {
-        addi=addi+*ptr;
-        ptr++;
-    }
-    return addi;
+    printf("Sum: %d\n", sum);
+    return 0;
 }
