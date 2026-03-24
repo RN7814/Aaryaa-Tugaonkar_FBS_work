@@ -1,43 +1,241 @@
-Here are 21 built-in string functions in C (<string.h>) listed in bullet points:
+Perfect 🔥 this is exactly what you need for exams + viva.
+I’ll give you **very basic, minimal syntax examples** for each function (easy to remember).
 
-strlen()
+---
 
-strcpy()
+# 📘 All C String Functions – Basic Examples
 
-strncpy()
+---
 
-strcat()
+## 1. `strlen()`
 
-strncat()
+```c
+char str[] = "Hello";
+printf("%d", strlen(str));   // 5
+```
 
-strcmp()
+---
 
-strncmp()
+## 2. `strcpy()`
 
-strchr()
+```c
+char src[] = "Hello";
+char dest[20];
 
-strrchr()
+strcpy(dest, src);
+printf("%s", dest);
+```
 
-strstr()
+---
 
-strtok()
+## 3. `strncpy()`
 
-strspn()
+```c
+char src[] = "HelloWorld";
+char dest[20];
 
-strcspn()
+strncpy(dest, src, 5);
+printf("%s", dest);   // Hello
+```
 
-strpbrk()
+---
 
-memcpy()
+## 4. `strcat()`
 
-memmove()
+```c
+char a[20] = "Hello ";
+char b[] = "World";
 
-memcmp()
+strcat(a, b);
+printf("%s", a);
+```
 
-memchr()
+---
 
-memset()
+## 5. `strncat()`
 
-strerror()
+```c
+char a[20] = "Hello ";
+char b[] = "World!!!";
 
-strdup()
+strncat(a, b, 5);
+printf("%s", a);   // Hello World
+```
+
+---
+
+## 6. `strcmp()`
+
+```c
+printf("%d", strcmp("abc", "abc"));  // 0
+```
+
+---
+
+## 7. `strncmp()`
+
+```c
+printf("%d", strncmp("abcde", "abcxy", 3));  // 0
+```
+
+---
+
+## 8. `strchr()`
+
+```c
+char str[] = "Hello";
+
+printf("%s", strchr(str, 'l'));  // llo
+```
+
+---
+
+## 9. `strrchr()`
+
+```c
+char str[] = "Hello";
+
+printf("%s", strrchr(str, 'l'));  // lo
+```
+
+---
+
+## 10. `strstr()`
+
+```c
+char str[] = "Hello World";
+
+printf("%s", strstr(str, "World"));  // World
+```
+
+---
+
+## 11. `strtok()`
+
+```c
+char str[] = "a,b,c";
+
+char *token = strtok(str, ",");
+printf("%s", token);  // a
+```
+
+---
+
+## 12. `strspn()`
+
+```c
+printf("%d", strspn("abc123", "abc"));  // 3
+```
+
+---
+
+## 13. `strcspn()`
+
+```c
+printf("%d", strcspn("abc123", "123"));  // 3
+```
+
+---
+
+## 14. `strpbrk()`
+
+```c
+char str[] = "hello";
+
+printf("%s", strpbrk(str, "aeiou"));  // ello
+```
+
+---
+
+## 15. `memcpy()`
+
+```c
+char src[] = "Hello";
+char dest[10];
+
+memcpy(dest, src, 5);
+dest[5] = '\0';
+
+printf("%s", dest);
+```
+
+---
+
+## 16. `memmove()`
+
+```c
+char str[] = "abcdef";
+
+memmove(str+2, str, 4);
+printf("%s", str);
+```
+
+---
+
+## 17. `memcmp()`
+
+```c
+printf("%d", memcmp("abc", "abc", 3));  // 0
+```
+
+---
+
+## 18. `memchr()`
+
+```c
+char str[] = "Hello";
+
+printf("%s", memchr(str, 'l', 5));  // llo
+```
+
+---
+
+## 19. `memset()`
+
+```c
+char str[10] = "Hello";
+
+memset(str, '*', 3);
+printf("%s", str);  // ***lo
+```
+
+---
+
+## 20. `strerror()`
+
+```c
+#include<errno.h>
+
+printf("%s", strerror(2));
+```
+
+---
+
+## 21. `strdup()`
+
+```c
+char *copy = strdup("Hello");
+
+printf("%s", copy);
+```
+
+---
+
+# 🧠 Final Exam Tip
+
+👉 If examiner asks:
+
+* **strlen → length**
+* **strcpy → copy**
+* **strcat → join**
+* **strcmp → compare**
+
+👉 Memory functions (`memcpy`, `memmove`) work on **bytes**, not just strings
+
+---
+
+If you want next step 🚀
+I can convert this into:
+
+* 📄 **Practical file format (ready to submit)**
+* 🎯 **Viva questions + answers for each function**
