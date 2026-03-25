@@ -1,6 +1,6 @@
-//Print numbers from 1 to 10
-class Q1
-{
+//Print numbers System.out.printfrom 1 to 10
+
+class Q2{
 
 public static void main (String args[]){
     int a=1;
