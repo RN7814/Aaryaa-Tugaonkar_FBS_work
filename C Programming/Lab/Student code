@@ -1,1 +1,14 @@
-void addStudnet(struct Student)
+#include<stdio.h>
+ typedef struct player
+ {
+    int jersey_no;
+    char name[100];
+    int runs,wickets,mplayed;
+ }player;
+
+
+ void main()
+ {
+    int count=0;
+    
+ }
