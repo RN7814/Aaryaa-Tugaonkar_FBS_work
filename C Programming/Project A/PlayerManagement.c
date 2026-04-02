@@ -2,8 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct player {
-
+typedef struct player 
+{
     int Jno;
     char Pname[100];
     int runs;
@@ -90,6 +90,7 @@ else
 }
     }
     
+
 }
 void addplayer(player *set)
 {
@@ -182,7 +183,7 @@ void updateplayer (player set[],int count)
 			scanf("%d",&set[i].wickets);
 			printf("\n4. Runs :-");
 			scanf("%d",&set[i].runs);
-			printf("\n5. Matches Played");
+			printf("\n5. Matches Played :-");
 			scanf("%d",&set[i].mplayed);
 			
 			printf("Player Data Updated\n");
@@ -198,8 +199,9 @@ void updateplayer (player set[],int count)
 
 void sortplayer (player set[],int count)
 {
-	printf("\n How do you want to Sort :- \n\t1.Max Runs\n\t2.Min Runs\n\t3.Max Wickets\n\t4.Min Wickets");
+	printf("\n How do you want to Sort :- \n\t1.Max Runs\n\t2.Min Runs\n\t3.Max Wickets\n\t4.Min Wickets\n");
 	int in;
+	printf("Enter the Input ?\n");
 	scanf("%d",&in);
 	int index=0;
 	
@@ -249,9 +251,7 @@ void sortplayer (player set[],int count)
 			printf("Top Player (Max Wickets): %s | \t | %d\n", set[index].Pname, set[index].wickets);
 
 		break;
-			
-			
-			
+					
 		case 4:
 			printf("Based on the Min Wickets");
 			
@@ -262,10 +262,9 @@ void sortplayer (player set[],int count)
 			}
 			printf("Top Player (Min Wickets): %s | \t | %d\n", set[index].Pname, set[index].wickets);
 		break;
-		
-		
+			
 		default:
-			printf("Wrong Option !!!!!");
+			printf("Wrong Option !!!!!\n");
 	}	
 }
 
@@ -280,7 +279,7 @@ void display(player set[],int count)
 		printf("\nPlayer Wickets :- %d",set[i].wickets);
 		printf("\nPlayer Matches :- %d",set[i].mplayed);
 	}
-	printf("\n||| Complete |||");
+	printf("\n||| Complete |||\n\n");
 }
 
 
