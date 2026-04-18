@@ -93,7 +93,7 @@ else
 
 }
 void addplayer(player *set)
-
+{
    
     printf("Enter the Name of Player :");
     scanf("%s",set->Pname);
