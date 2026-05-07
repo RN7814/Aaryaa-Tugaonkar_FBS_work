@@ -6,7 +6,7 @@ class Table5
 		int i=1;
 			while(i<11)
 			{
-				System.out.printf("%d\n",(n*i);
+				System.out.printf("%d\n"),(n*i);
 				i++;
 			}
 	}

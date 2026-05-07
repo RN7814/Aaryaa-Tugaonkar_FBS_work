@@ -1,0 +1,118 @@
+// ══════════════════════════════════════════
+//  1. Abstract Base Class — Employee
+// ══════════════════════════════════════════
+abstract class Employee {
+    int id;
+    String name;
+    double salary;
+
+    Employee(int id, String name, double salary) {
+        this.id     = id;
+        this.name   = name;
+        this.salary = salary;
+    }
+
+    public String getName()          { return name; }
+    public int    getId()            { return id;   }
+
+    // Every subclass MUST define how salary is calculated
+    public abstract double calSalary();
+
+    @Override
+    public String toString() {
+        return "[ID: " + id + " | Name: " + name + " | Salary: ₹" + calSalary() + "]";
+    }
+}
+
+class HR extends Employee {
+    HR(int id, String name, double salary) {
+        super(id, name, salary);
+    }
+
+    @Override
+    public double calSalary() {
+        return salary;          // no extra components
+    }
+}
+
+class SalesManager extends Employee {
+    double salesTarget;
+    double incentivePercent;   // e.g. 5 means 5%
+
+    SalesManager(int id, String name, double salary,
+                 double salesTarget, double incentivePercent) {
+        super(id, name, salary);
+        this.salesTarget      = salesTarget;
+        this.incentivePercent = incentivePercent;
+    }
+
+    public double getIncentive() {
+        return salesTarget * incentivePercent / 100;
+    }
+
+    @Override
+    public double calSalary() {
+        return salary + getIncentive();
+    }
+}
+
+class Admin extends Employee {
+    double allowance;
+
+    Admin(int id, String name, double salary, double allowance) {
+        super(id, name, salary);
+        this.allowance = allowance;
+    }
+
+    public double getAllowance() { return allowance; }
+
+    @Override
+    public double calSalary() {
+        return salary + allowance;
+    }
+}
+
+public class Test {
+
+    // ── getEmployeeDetails: instanceof + safe downcast ──
+    public static void getEmployeeDetails(Employee e) {
+
+        System.out.println("─── Employee Details ───");
+        System.out.println("Name       : " + e.getName());
+        System.out.println("Total Sal  : ₹" + e.calSalary());
+
+        if (e instanceof SalesManager) {
+            SalesManager s1 = (SalesManager) e;      // safe downcast ✅
+            System.out.println("Incentive  : ₹" + s1.getIncentive());
+        }
+
+        if (e instanceof Admin) {
+            Admin a1 = (Admin) e;                    // safe downcast ✅
+            System.out.println("Allowance  : ₹" + a1.getAllowance());
+        }
+
+        System.out.println();
+    }
+
+    // ── main: calls getEmployeeDetails ──
+    public static void main(String[] args) {
+
+        // Admin  (id=103, name=Virat, basicSalary=35000, allowance=4000)
+        Test.getEmployeeDetails(new Admin(103, "Virat", 35000, 4000));
+
+        // SalesManager (id=102, name=Rohit, basicSalary=25000, target=35000, incentive%=5)
+        Test.getEmployeeDetails(new SalesManager(102, "Rohit", 25000, 35000, 5));
+
+        // ── main1 logic: upcasting + polymorphic method calls ──
+        System.out.println("─── Upcast Array Demo ───");
+        Employee[] staff = {
+            new HR(101, "Priya", 30000),
+            new SalesManager(102, "Rohit", 25000, 35000, 5),
+            new Admin(103, "Virat", 35000, 4000)
+        };
+
+        for (Employee e : staff) {
+            System.out.println(e.getName() + " → ₹" + e.calSalary());
+        }
+    }
+}
