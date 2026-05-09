@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Fetch Products</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td{
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th{
+            background-color: lightgray;
+        }
+
+        img{
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+
+    <script>
+
+        function display(data){
+
+            let array = data.products;
+
+            let str = `
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                        <th>Stock</th>
+                        <th>Image</th>
+                    </tr>
+            `;
+
+            for(let i = 0; i < array.length; i++){
+
+                str += `
+                    <tr>
+                        <td>${array[i].id}</td>
+                        <td>${array[i].title}</td>
+                        <td>${array[i].category}</td>
+                        <td>$${array[i].price}</td>
+                        <td>${array[i].rating}</td>
+                        <td>${array[i].stock}</td>
+                        <td>
+                            <img src="${array[i].thumbnail}" alt="product image">
+                        </td>
+                    </tr>
+                `;
+            }
+
+            str += `</table>`;
+
+            document.getElementById("showData").innerHTML = str;
+        }
+
+        async function fetchAllData(){
+
+            try{
+
+                let response = await axios.get("https://dummyjson.com/products");
+
+                console.log(response.data);
+
+                display(response.data);
+
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <button onclick="fetchAllData()">
+        Click to Fetch Data
+    </button>
+
+    <div id="showData"></div>
+
+</body>
+</html>
