@@ -1,0 +1,15 @@
+package p1;
+public class MyStack
+{
+    int top;
+    int max;
+    int [] arrStack;
+
+    public MyStack(int size)
+    {
+        this.max = size;
+        arrStack = new int[max];
+        top = -1;
+
+    }
+}

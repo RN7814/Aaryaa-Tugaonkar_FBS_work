@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEXAANOVA CRM — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--navy:#0b1120;--navy2:#131c30;--card:#18243d;--border:#243050;--accent:#3b82f6;--accent2:#06b6d4;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#64748b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  
+  body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--navy);}
+  .login-wrap{width:420px;padding:48px 40px;background:var(--navy2);border:1px solid var(--border);border-radius:20px;}
+  .login-logo{text-align:center;margin-bottom:36px;}
+  .login-logo .logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;}
+  .login-logo .logo-text span{color:var(--accent);}
+  .login-logo .logo-sub{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;}
+  h2{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;margin-bottom:6px;}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+  label{font-size:12px;color:var(--muted);font-weight:500;}
+  input,select{background:var(--navy);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:12px 16px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s;width:100%;}
+  input:focus,select:focus{border-color:var(--accent);}
+  .btn-login{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:all 0.15s;margin-top:6px;}
+  .btn-login:hover{background:#2563eb;}
+  .role-links{display:flex;gap:12px;margin-top:24px;}
+  .role-link{flex:1;text-align:center;padding:10px;border:1px solid var(--border);border-radius:10px;font-size:12px;font-weight:500;color:var(--muted);text-decoration:none;transition:all 0.15s;}
+  .role-link:hover{border-color:var(--accent);color:var(--accent);}
+  .err{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:var(--red);border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:16px;display:none;}
+
+</style>
+</head>
+<body>
+<div class="login-wrap">
+  
+  <div class="login-logo">
+    <div class="logo-text">NEXA<span>ANOVA</span></div>
+    <div class="logo-sub">CRM System</div>
+  </div>
+  <h2>Welcome back</h2>
+  <p class="sub">Sign in to your account to continue</p>
+  <div class="err" id="errMsg">Invalid credentials. Please try again.</div>
+  <div class="form-group">
+    <label>Email / Username</label>
+    <input type="email" id="email" placeholder="admin@nexaanova.com"/>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" id="pass" placeholder="••••••••"/>
+  </div>
+  <div class="form-group">
+    <label>Login As</label>
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="counselor">Counselor</option>
+      <option value="manager">Manager</option>
+    </select>
+  </div>
+  <button class="btn-login" onclick="doLogin()">Sign In →</button>
+  <div class="role-links">
+    <a href="admin-dashboard.html" class="role-link">🔐 Admin Portal</a>
+    <a href="counselor-dashboard.html" class="role-link">🎓 Counselor Portal</a>
+  </div>
+
+</div>
+<script>
+
+function doLogin(){
+  var e=document.getElementById('email').value;
+  var p=document.getElementById('pass').value;
+  var r=document.getElementById('role').value;
+  if(!e||!p){document.getElementById('errMsg').style.display='block';return;}
+  if(r==='admin'||r==='manager') window.location='admin-dashboard.html';
+  else window.location='counselor-dashboard.html';
+}
+
+document.addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+</script>
+</body>
+</html>

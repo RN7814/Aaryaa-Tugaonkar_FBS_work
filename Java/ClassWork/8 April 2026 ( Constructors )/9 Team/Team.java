@@ -5,6 +5,20 @@ class Team
 	String name;
 	int runs,mplayed;
 	
+	Team()
+	{
+		this.jercey=00;
+		this.name="Not Given";
+		this.runs=000;
+		this.mplayed=000;
+	}
+	Team(int j,String n, int r, int m)
+	{
+		this.jercey=j;
+		this.name=n;
+		this.runs=r;
+		this.mplayed=m;
+	}
 	void setjercey(int i)
 	{
 		this.jercey = i;
@@ -69,5 +83,13 @@ class Team
 			h2.setname("Virat");
 			h2.setmplayed(4103);
 			h2.display();
+			
+			Team h3= new Team(10,"Sham",78142,8745);
+			h3.display();
+			
+			Team h4= new Team ();
+			h4.display();
+			
+			
 		}
 	}

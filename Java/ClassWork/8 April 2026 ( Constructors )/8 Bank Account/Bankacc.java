@@ -5,6 +5,22 @@ class Bankacc
 	String name;
 	double cubal,intrest;
 	
+	Bankacc()
+	{
+		this.accno=0;
+		this.name="Not Given";
+		this.cubal=000;
+		this.intrest=000;
+	}
+	
+	Bankacc(int a,String n, double cu, double intt)
+	{
+		this.accno=a;
+		this.name=n;
+		this.cubal= cu;
+		this.intrest= intt;
+	}
+	
 	void setaccno( int a)
 	{
 		this.accno = a;
@@ -72,6 +88,13 @@ class Test
 		
 		a1.display();
 		a2.display();
+		
+		Bankacc a3 = new Bankacc(123456,"Seline",458915,6533.4);
+		a3.display();
+		
+		Bankacc a4 = new Bankacc();
+		a4.display();
+		
 		
 	
 	}

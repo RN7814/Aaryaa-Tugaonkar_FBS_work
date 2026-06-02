@@ -5,6 +5,23 @@ class Hotel
 	String name;
 	int stars,rooms_avail;
 	
+	Hotel()
+	{
+		this.hno=0;
+		this.name=" NOt Given ";
+		this.stars=00;
+		this.rooms_avail=00;
+	}
+	Hotel(int i, String j, int k, int l)
+	{
+		this.hno=i;
+		this.name=j;
+		this.stars=k;
+		this.rooms_avail=l;
+	}
+	
+	
+	
 	void sethno(int i)
 	{
 		this.hno = i;
@@ -69,5 +86,13 @@ class Hotel
 			h2.setname("Hotel Royal Fern");
 			h2.setrooms_avail(16);
 			h2.display();
+			
+			Hotel h3= new Hotel(03,"Empire Executive",5,51);
+			h3.display();
+			
+			Hotel h4 = new Hotel () ;
+			h4.display();
 		}
+		
+		
 	}
