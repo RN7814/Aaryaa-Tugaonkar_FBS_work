@@ -1,4 +1,3 @@
-package p1;
 public class MyStack
 {
     int top;
@@ -51,17 +50,22 @@ public class MyStack
 }
 class Test
 {
-    public static void main( String []args)
+    public static void main(String[] args)
     
     {
         MyStack s1 = new MyStack(5);
         s1.push(10);
-        s1.push(20);
-        s1.push(20);
-        s1.push(20);
-        s1.push(20);
-        s1.push(20);
-
+        s1.push(05);
+        s1.push(30);
+    
         s1.display();
+
+        System.out.println(s1.pop());
+        s1.display();
+
+        System.out.println(s1.pop());
+        s1.display();
+
+        
     }
 }
