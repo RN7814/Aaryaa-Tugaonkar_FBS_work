@@ -1,3 +1,4 @@
+package assignment_1;
 class Date {
 	int day,month,year;
 	String dow;
@@ -12,7 +13,7 @@ class Date {
 		this.year=y;
 	}
 }
-class Test{
+class Test3{
 	public static void main (String[] args){
 		Date d1= new Date();
 	d1.setDay(7);

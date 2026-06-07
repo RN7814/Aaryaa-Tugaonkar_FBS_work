@@ -1,3 +1,4 @@
+package assignment_1;
 class Student
 {
 	String Frn,Name;
@@ -40,7 +41,7 @@ class Student
 	
 	
 }
-class Test
+class Test7
 {
 	public static void main (String[] args)
 	{

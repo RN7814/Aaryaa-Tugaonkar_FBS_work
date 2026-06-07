@@ -1,3 +1,4 @@
+package assignment_1;
 class PStudent
 {
 	String frn,studentName,distanceCovered,companyName,designation;
@@ -53,7 +54,7 @@ class PStudent
 		System.out.println(this.getfrn()+" "+this.getstudentName()+" "+ this.getdistanceCovered()+" "+ this.getcompanyName()+" "+ this.getdesignation()+"\n");
 	}
 }
-	class Test
+	class Test9
 	{
 		public static void main (String [] args)
 		{

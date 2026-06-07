@@ -1,3 +1,4 @@
+package assignment_1;
 
 class Bankacc
 {
@@ -50,7 +51,7 @@ class Bankacc
 		System.out.println(this.getaccno()+"//"+this.getname()+"//"+this.getcubal()+"//"+this.getintrest()+"/n");
 	}
 }
-class Test
+class Test2
 {
 	public static void main (String [] args)
 	{

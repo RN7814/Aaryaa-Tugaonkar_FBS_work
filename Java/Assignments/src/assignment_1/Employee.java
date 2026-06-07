@@ -1,3 +1,4 @@
+package assignment_1;
 class Employee{
     int EmployeeId;
     String Name;
@@ -31,7 +32,7 @@ class Employee{
 	}	
     
 
-class T1{
+class Test4{
     public static void main (String[] args){
         Employee e1 =  new Employee();
 

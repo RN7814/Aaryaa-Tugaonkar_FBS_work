@@ -72,7 +72,7 @@ class Time {
     }
 }
 
-public class Main1 {
+class Main1 {
     public static void main(String[] args) {
         Time t1 = new Time(10, 45, 50);
         Time t2 = new Time(2, 20, 15);

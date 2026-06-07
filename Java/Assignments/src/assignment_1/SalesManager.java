@@ -1,3 +1,4 @@
+package assignment_1;
 
 class SM
 {
@@ -59,7 +60,7 @@ class SM
 		System.out.println ( this.getid()+"--"+this.getname()+"--"+this.getsalary()+"--"+this.getincentive()+"--"+this.gettarget()+"\n");
 	}
 }
-	class Test
+	class Test6
 	{
 		public static void main ( String[] args)
 		{

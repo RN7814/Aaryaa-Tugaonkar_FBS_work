@@ -1,9 +1,10 @@
+package assignment_1;
 
-class Admin
+class Hr
 {
 	int id;
 	String name;
-	double salary,allowance;
+	double salary,commission;
 	
 	void setid(int i)
 	{
@@ -15,9 +16,9 @@ class Admin
 		this.salary = s;
 	}
 	
-	void setallowance ( double c)
+	void setcommission ( double c)
 	{
-		this.allowance = c/2.0;	
+		this.commission = c/2.0;	
 	}
 	 
 	void setname( String n)
@@ -30,9 +31,9 @@ class Admin
 		return this.salary;
 	}
 	
-	double getallowance()
+	double getcommission()
 	{
-		return this.allowance;
+		return this.commission;
 	}
 	
 	int getid()
@@ -47,29 +48,27 @@ class Admin
 	
 	void display()
 	{
-		System.out.println ( this.getid()+"--"+this.getname()+"--"+this.getsalary()+"--"+this.getallowance()+"--"+"\n");
+		System.out.println ( this.getid()+"--"+this.getname()+"--"+this.getsalary()+"--"+this.getcommission()+"\n");
 	}
 }
-	class Test
+	class Test5
 	{
 		public static void main ( String[] args)
 		{
-			Admin h1= new Admin();
-			Admin h2= new Admin();
+			Hr h1= new Hr();
+			Hr h2= new Hr();
 			
 			h1.setid(01);
-			h1.setsalary(1545655);
-			h1.setname("Rohit");
-			h1.setallowance(44573);
-			
+			h1.setsalary(456523);
+			h1.setname("Aryan");
+			h1.setcommission(456523);
 			h1.display();
 			
 			
 			h2.setid(02);
 			h2.setsalary(45623);
-			h2.setname("Aryan");
-			h2.setallowance(45623);
-			
+			h2.setname("Arya");
+			h2.setcommission(45623);
 			h2.display();
 		}
 	}

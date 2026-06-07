@@ -1,3 +1,4 @@
+package assignment_1;
 
 class Team
 {
@@ -50,7 +51,7 @@ class Team
 		System.out.println ( this.getjercey()+"--"+this.getname()+"--"+this.getruns()+"--"+this.getmplayed()+"\n");
 	}
 }
-	class Test
+	class Test8
 	{
 		public static void main ( String[] args)
 		{
