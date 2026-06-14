@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NEXAANOVA CRM — Student Dashboard</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--navy:#0a0f1a;--navy2:#0f1629;--card:#131f35;--border:#1e2d4a;--accent:#8b5cf6;--accent2:#a78bfa;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#64748b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;}
+  .sidebar{width:230px;min-height:100vh;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;}
+  .logo{padding:26px 22px 18px;border-bottom:1px solid var(--border);}
+  .logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;}
+  .logo-text span{color:var(--accent);}
+  .logo-sub{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1.2px;text-transform:uppercase;}
+  .nav{flex:1;padding:14px 0;}
+  .nav-section{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:14px 22px 6px;}
+  .nav-item{display:flex;align-items:center;gap:11px;padding:10px 22px;cursor:pointer;font-size:13.5px;color:var(--muted);border-left:3px solid transparent;text-decoration:none;transition:all 0.15s;}
+  .nav-item:hover{color:var(--text);background:rgba(139,92,246,0.07);}
+  .nav-item.active{color:var(--accent);background:rgba(139,92,246,0.1);border-left-color:var(--accent);}
+  .nav-icon{width:18px;text-align:center;font-size:15px;}
+  .sidebar-footer{padding:14px 22px;border-top:1px solid var(--border);}
+  .user-badge{display:flex;align-items:center;gap:10px;}
+  .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:#fff;}
+  .user-info{font-size:13px;font-weight:500;}
+  .user-role{font-size:11px;color:var(--muted);}
+  .main{margin-left:230px;flex:1;}
+  .topbar{height:62px;background:var(--navy2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;}
+  .content{padding:24px 28px;}
+  .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
+  .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+  .btn-sm{padding:6px 12px;font-size:12px;}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px;position:relative;overflow:hidden;}
+  .stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);}
+  .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--accent);}
+  .stat-trend{font-size:11px;color:var(--muted);margin-top:5px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;}
+  .card-header{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+  .card-body{padding:18px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:9px 12px;font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid rgba(30,45,74,0.5);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  .badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500;}
+  .badge-paid{background:rgba(34,197,94,0.15);color:var(--green);}
+  .badge-pending{background:rgba(245,158,11,0.15);color:var(--orange);}
+  .badge-present{background:rgba(34,197,94,0.15);color:var(--green);}
+  .badge-absent{background:rgba(239,68,68,0.15);color:var(--red);}
+  .prog-bar{height:10px;background:var(--border);border-radius:5px;}
+  .prog-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .info-card{background:var(--navy);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px;}
+  .info-item{display:flex;flex-direction:column;gap:3px;}
+  .info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;}
+  .info-value{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--accent);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;}
+  ::-webkit-scrollbar{width:5px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style></head>
+<body>
+<aside class="sidebar">
+  <div class="logo"><div class="logo-text">NEXA<span>ANOVA</span></div><div class="logo-sub">Student Portal</div></div>
+  <nav class="nav">
+    <div class="nav-section">My Portal</div>
+    <a href="student-dashboard.html" class="nav-item active"><span class="nav-icon">📊</span> My Dashboard</a>
+    <a href="#" class="nav-item"><span class="nav-icon">📋</span> My Attendance</a>
+    <a href="#" class="nav-item"><span class="nav-icon">💳</span> Fee Details</a>
+    <a href="#" class="nav-item"><span class="nav-icon">📚</span> My Course</a>
+  </nav>
+  <div class="sidebar-footer"><div class="user-badge"><div class="avatar">T</div>
+    <div><div class="user-info">Tina Rao</div><div class="user-role">Student — BCA</div></div></div></div>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <div class="page-title">My Dashboard</div>
+    <div style="display:flex;align-items:center;gap:12px;padding:0 0 0 0">
+      <div style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);color:var(--accent);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:500">📅 Thu, 02 May 2026</div>
+    </div>
+  </div>
+  <div class="content">
+<div class="info-card">
+  <div class="info-item"><div class="info-label">Student Name</div><div class="info-value">Tina Rao</div></div>
+  <div class="info-item"><div class="info-label">Admission ID</div><div class="info-value">#ADM001</div></div>
+  <div class="info-item"><div class="info-label">Course</div><div class="info-value">BCA</div></div>
+  <div class="info-item"><div class="info-label">Batch</div><div class="info-value">Batch A</div></div>
+  <div class="info-item"><div class="info-label">Trainer</div><div class="info-value">Raj Trainer</div></div>
+  <div class="info-item"><div class="info-label">Status</div><div class="info-value" style="color:var(--green)">Active ✓</div></div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">Attendance</div><div class="stat-num">90%</div><div class="stat-trend">↑ Good standing</div></div>
+  <div class="stat-card"><div class="stat-label">Classes Attended</div><div class="stat-num">54</div><div class="stat-trend">of 60 total</div></div>
+  <div class="stat-card"><div class="stat-label">Fees Paid</div><div class="stat-num">₹75K</div><div class="stat-trend">Full payment</div></div>
+  <div class="stat-card"><div class="stat-label">Balance Due</div><div class="stat-num" style="color:var(--green)">₹0</div><div class="stat-trend">No dues</div></div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <div class="card-header"><div class="card-title">Attendance Overview</div></div>
+    <div class="card-body">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>Overall Attendance</span><span style="color:var(--accent);font-weight:600">90%</span></div>
+      <div class="prog-bar" style="margin-bottom:20px"><div class="prog-fill" style="width:90%"></div></div>
+      <table>
+        <thead><tr><th>Date</th><th>Subject</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>02 May 26</td><td>Database Design</td><td><span class="badge badge-present">Present</span></td></tr>
+          <tr><td>01 May 26</td><td>Java Programming</td><td><span class="badge badge-present">Present</span></td></tr>
+          <tr><td>30 Apr 26</td><td>Web Development</td><td><span class="badge badge-absent">Absent</span></td></tr>
+          <tr><td>29 Apr 26</td><td>Database Design</td><td><span class="badge badge-present">Present</span></td></tr>
+          <tr><td>28 Apr 26</td><td>Networking</td><td><span class="badge badge-present">Present</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Fee & Payment Details</div></div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Total Fees</span><span style="font-weight:600">₹75,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Fees Paid</span><span style="font-weight:600;color:var(--green)">₹75,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Balance Due</span><span style="font-weight:600;color:var(--green)">₹0</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Payment Status</span><span class="badge badge-paid">Paid Full</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Payment Mode</span><span>Online / UPI</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px;background:var(--navy);border-radius:8px;font-size:13px"><span>Admission Date</span><span>25 Apr 2026</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-title">Course Schedule</div></div>
+  <div class="card-body" style="padding:0">
+    <table>
+      <thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Trainer</th><th>Room</th></tr></thead>
+      <tbody>
+        <tr><td>Mon / Wed / Fri</td><td>10:00 AM</td><td>Database Design</td><td>Raj Trainer</td><td>Lab 1</td></tr>
+        <tr><td>Tue / Thu</td><td>11:00 AM</td><td>Java Programming</td><td>Raj Trainer</td><td>Lab 2</td></tr>
+        <tr><td>Mon / Fri</td><td>02:00 PM</td><td>Web Development</td><td>Raj Trainer</td><td>Lab 1</td></tr>
+        <tr><td>Wed</td><td>03:00 PM</td><td>Networking Basics</td><td>Raj Trainer</td><td>Room 4</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</main>
+</body></html>

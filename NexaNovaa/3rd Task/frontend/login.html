@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NEXAANOVA CRM — Login</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--navy:#0b1120;--navy2:#131c30;--card:#18243d;--border:#243050;--accent:#3b82f6;--accent2:#06b6d4;--red:#ef4444;--text:#e2e8f0;--muted:#64748b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+  .wrap{width:420px;padding:48px 40px;background:var(--navy2);border:1px solid var(--border);border-radius:20px;}
+  .logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;text-align:center;}
+  .logo-text span{color:var(--accent);}
+  .logo-sub{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;text-align:center;margin-bottom:36px;}
+  h2{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;margin-bottom:6px;}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
+  .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+  label{font-size:12px;color:var(--muted);font-weight:500;}
+  input,select{background:var(--navy);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:12px 16px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s;width:100%;}
+  input:focus,select:focus{border-color:var(--accent);}
+  .btn-login{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;margin-top:6px;}
+  .btn-login:hover{background:#2563eb;}
+  .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px;}
+  .role-link{text-align:center;padding:9px;border:1px solid var(--border);border-radius:10px;font-size:12px;font-weight:500;color:var(--muted);text-decoration:none;transition:all 0.15s;}
+  .role-link:hover{border-color:var(--accent);color:var(--accent);}
+  .err{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:var(--red);border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:16px;display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo-text">NEXA<span>ANOVA</span></div>
+  <div class="logo-sub">CRM System</div>
+  <h2>Welcome back</h2>
+  <p class="sub">Sign in to your account</p>
+  <div class="err" id="err">Invalid credentials. Please try again.</div>
+  <div class="fg"><label>Email / Username</label><input type="email" id="email" placeholder="you@nexaanova.com"/></div>
+  <div class="fg"><label>Password</label><input type="password" id="pass" placeholder="••••••••"/></div>
+  <div class="fg"><label>Login As</label>
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="counselor">Counselor</option>
+      <option value="manager">Manager</option>
+      <option value="trainer">Trainer</option>
+      <option value="student">Student</option>
+    </select>
+  </div>
+  <button class="btn-login" onclick="doLogin()">Sign In →</button>
+  <div class="role-grid">
+    <a href="admin-dashboard.html" class="role-link">🔐 Admin</a>
+    <a href="counselor-dashboard.html" class="role-link">🎓 Counselor</a>
+    <a href="trainer-dashboard.html" class="role-link">📚 Trainer</a>
+    <a href="student-dashboard.html" class="role-link">👤 Student</a>
+  </div>
+</div>
+<script>
+const routes = {admin:'admin-dashboard.html',manager:'admin-dashboard.html',counselor:'counselor-dashboard.html',trainer:'trainer-dashboard.html',student:'student-dashboard.html'};
+function doLogin(){
+  if(!document.getElementById('email').value||!document.getElementById('pass').value){document.getElementById('err').style.display='block';return;}
+  window.location=routes[document.getElementById('role').value];
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+</script>
+</body></html>

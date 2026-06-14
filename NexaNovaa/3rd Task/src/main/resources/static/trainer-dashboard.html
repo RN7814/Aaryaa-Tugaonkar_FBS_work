@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NEXAANOVA CRM — Trainer Dashboard</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--navy:#0d1117;--navy2:#161b22;--card:#1c2333;--border:#21262d;--accent:#f97316;--accent2:#fb923c;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--purple:#a855f7;--text:#e6edf3;--muted:#8b949e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;}
+  .sidebar{width:230px;min-height:100vh;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;}
+  .logo{padding:26px 22px 18px;border-bottom:1px solid var(--border);}
+  .logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;}
+  .logo-text span{color:var(--accent);}
+  .logo-sub{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1.2px;text-transform:uppercase;}
+  .nav{flex:1;padding:14px 0;}
+  .nav-section{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:14px 22px 6px;}
+  .nav-item{display:flex;align-items:center;gap:11px;padding:10px 22px;cursor:pointer;font-size:13.5px;color:var(--muted);border-left:3px solid transparent;text-decoration:none;transition:all 0.15s;}
+  .nav-item:hover{color:var(--text);background:rgba(249,115,22,0.07);}
+  .nav-item.active{color:var(--accent);background:rgba(249,115,22,0.1);border-left-color:var(--accent);}
+  .nav-icon{width:18px;text-align:center;font-size:15px;}
+  .sidebar-footer{padding:14px 22px;border-top:1px solid var(--border);}
+  .user-badge{display:flex;align-items:center;gap:10px;}
+  .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:#fff;}
+  .user-info{font-size:13px;font-weight:500;}
+  .user-role{font-size:11px;color:var(--muted);}
+  .main{margin-left:230px;flex:1;}
+  .topbar{height:62px;background:var(--navy2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;}
+  .topbar-right{display:flex;align-items:center;gap:12px;}
+  .content{padding:24px 28px;}
+  .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.15s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+  .btn-sm{padding:6px 12px;font-size:12px;}
+  .btn-success{background:var(--green);color:#fff;}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px;position:relative;overflow:hidden;}
+  .stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);}
+  .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--accent);}
+  .stat-trend{font-size:11px;color:var(--muted);margin-top:5px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;}
+  .card-header{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+  .card-body{padding:18px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:9px 12px;font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid rgba(33,38,45,0.8);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(249,115,22,0.03);}
+  .badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500;}
+  .badge-active{background:rgba(34,197,94,0.15);color:var(--green);}
+  .badge-done{background:rgba(34,197,94,0.15);color:var(--green);}
+  .badge-dropped{background:rgba(239,68,68,0.15);color:var(--red);}
+  .badge-pending{background:rgba(245,158,11,0.15);color:var(--orange);}
+  .prog-bar{height:6px;background:var(--border);border-radius:3px;margin-top:4px;}
+  .prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;}
+  .notice{background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.2);border-radius:8px;padding:11px 14px;font-size:13px;color:var(--accent);margin-bottom:16px;}
+  .icon-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:5px 8px;cursor:pointer;color:var(--muted);font-size:12px;}
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent);}
+  ::-webkit-scrollbar{width:5px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style></head>
+<body>
+<aside class="sidebar">
+  <div class="logo"><div class="logo-text">NEXA<span>ANOVA</span></div><div class="logo-sub">Trainer Portal</div></div>
+  <nav class="nav"><div class="nav-section">Overview</div><a href="trainer-dashboard.html" class="nav-item active"><span class="nav-icon">📊</span> My Dashboard</a><a href="trainer-students.html" class="nav-item"><span class="nav-icon">🎓</span> My Students</a><a href="trainer-attendance.html" class="nav-item"><span class="nav-icon">📋</span> Attendance</a></nav>
+  <div class="sidebar-footer"><div class="user-badge"><div class="avatar">T</div>
+    <div><div class="user-info">Raj Trainer</div><div class="user-role">Trainer</div></div></div></div>
+</aside>
+<main class="main">
+  <div class="topbar"><div class="page-title">Trainer Dashboard</div>
+    <div class="topbar-right"><div style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.25);color:var(--accent);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:500">📅 Thu, 02 May 2026</div></div>
+  </div>
+  <div class="content">
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">My Students</div><div class="stat-num" style="color:var(--accent)">18</div><div class="stat-trend">Active batch</div></div>
+  <div class="stat-card"><div class="stat-label">Avg Attendance</div><div class="stat-num" style="color:var(--green)">82%</div><div class="stat-trend">This month</div></div>
+  <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-num" style="color:var(--purple)">6</div><div class="stat-trend">This batch</div></div>
+  <div class="stat-card"><div class="stat-label">Dropped</div><div class="stat-num" style="color:var(--red)">2</div><div class="stat-trend">This batch</div></div>
+</div>
+<div class="notice">📌 You have <strong>3 students</strong> with attendance below 75% — review required.</div>
+<div class="two-col">
+  <div class="card">
+    <div class="card-header"><div class="card-title">My Students (Recent)</div><a href="trainer-students.html" class="btn btn-outline btn-sm">View All</a></div>
+    <div class="card-body" style="padding:0">
+      <table>
+        <thead><tr><th>Student</th><th>Course</th><th>Batch</th><th>Attendance</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tina Rao</strong></td><td>BCA</td><td>Batch A</td><td>90%</td><td><span class="badge badge-active">Active</span></td></tr>
+          <tr><td><strong>Ravi Kumar</strong></td><td>MBA</td><td>Batch B</td><td>68%</td><td><span class="badge badge-pending">Low Attendance</span></td></tr>
+          <tr><td><strong>Sonal Pawar</strong></td><td>Data Science</td><td>Batch A</td><td>95%</td><td><span class="badge badge-active">Active</span></td></tr>
+          <tr><td><strong>Amit Joshi</strong></td><td>MCA</td><td>Batch C</td><td>72%</td><td><span class="badge badge-pending">Low Attendance</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Batch Progress</div></div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>Batch A — BCA / Data Sci.</span><span style="color:var(--accent)">7 students</span></div><div class="prog-bar"><div class="prog-fill" style="width:65%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>Batch B — MBA</span><span style="color:var(--accent)">6 students</span></div><div class="prog-bar"><div class="prog-fill" style="width:40%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>Batch C — MCA</span><span style="color:var(--accent)">5 students</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-title">Today's Schedule</div></div>
+  <div class="card-body" style="padding:0">
+    <table>
+      <thead><tr><th>Time</th><th>Batch</th><th>Course</th><th>Topic</th><th>Room</th></tr></thead>
+      <tbody>
+        <tr><td>10:00 AM</td><td>Batch A</td><td>BCA</td><td>Database Normalization</td><td>Lab 1</td></tr>
+        <tr><td>12:00 PM</td><td>Batch B</td><td>MBA</td><td>Strategic Management</td><td>Room 3</td></tr>
+        <tr><td>02:00 PM</td><td>Batch C</td><td>MCA</td><td>Java Spring Boot</td><td>Lab 2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</main>
+</body></html>
