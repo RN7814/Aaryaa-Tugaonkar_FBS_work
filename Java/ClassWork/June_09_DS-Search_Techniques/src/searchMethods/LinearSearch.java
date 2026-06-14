@@ -25,6 +25,6 @@ class Test1
 	public static void main(String[] args) {
 		int[] arr = {10,20,50,4,071,95};
 		LinearSearch l1 = new LinearSearch();
-		l1.Linear(arr, 20);;
+		l1.Linear(arr, 20);
 	}
 }
