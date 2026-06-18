@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaryaa Tugaonkar — FBS Coursework Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15191F;
+    --panel:#1C222B;
+    --panel-raised:#222932;
+    --paper:#E9E4D7;
+    --paper-dim:#A9A398;
+    --marigold:#F0A23C;
+    --marigold-dim:#7A5A2C;
+    --sage:#6F9A82;
+    --sage-dim:#37463E;
+    --terracotta:#C2592E;
+    --terracotta-dim:#4A2B1C;
+    --line:#33394300;
+    --rule:rgba(233,228,215,0.12);
+    --rule-strong:rgba(233,228,215,0.22);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+
+  .page{
+    max-width:1080px;
+    margin:0 auto;
+    padding:64px 40px 120px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:32px;
+    align-items:start;
+    padding-bottom:40px;
+    border-bottom:1px solid var(--rule-strong);
+    margin-bottom:48px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--marigold);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"// ";color:var(--paper-dim);}
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:46px;
+    line-height:1.08;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--paper-dim);
+  }
+  .hero-desc{
+    font-size:15.5px;
+    line-height:1.65;
+    color:#C9C3B6;
+    max-width:560px;
+    margin:0;
+  }
+  .hero-desc code{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13.5px;
+    background:var(--panel-raised);
+    padding:2px 6px;
+    border-radius:4px;
+    color:var(--marigold);
+  }
+  .repo-stamp{
+    text-align:right;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--paper-dim);
+    white-space:nowrap;
+    padding-top:6px;
+  }
+  .repo-stamp .commit{
+    display:inline-block;
+    margin-top:8px;
+    padding:4px 10px;
+    border:1px solid var(--rule-strong);
+    border-radius:5px;
+    color:var(--sage);
+  }
+  .repo-stamp .branch-row{margin-top:10px;color:#8B8579;}
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:56px;
+  }
+  .stat{
+    background:var(--panel);
+    padding:20px 18px;
+    text-align:left;
+  }
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:30px;
+    line-height:1;
+    color:var(--paper);
+    display:block;
+  }
+  .stat .label{
+    font-size:11.5px;
+    color:var(--paper-dim);
+    margin-top:6px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:22px;
+  }
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:24px;
+    margin:0;
+  }
+  .section-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+  }
+
+  /* ---------- TIMELINE (signature element) ---------- */
+  .timeline-wrap{
+    margin-bottom:64px;
+  }
+  .timeline{
+    position:relative;
+    padding:34px 4px 8px;
+    overflow-x:auto;
+  }
+  .timeline-track{
+    position:relative;
+    height:2px;
+    background:var(--rule-strong);
+    margin:0 0 0;
+    min-width:880px;
+  }
+  .timeline-track::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;top:0;bottom:0;
+    background:linear-gradient(to right, var(--sage), var(--marigold));
+    opacity:0.55;
+  }
+  .tl-entries{
+    display:flex;
+    justify-content:space-between;
+    min-width:880px;
+    margin-top:-9px;
+  }
+  .tl-entry{
+    position:relative;
+    text-align:center;
+    flex:1;
+    padding:0 4px;
+  }
+  .tl-dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--marigold);
+    border:2px solid var(--bg);
+    margin:0 auto 10px;
+    position:relative;
+    z-index:2;
+  }
+  .tl-entry.sage .tl-dot{background:var(--sage);}
+  .tl-month{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--paper-dim);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .tl-topic{
+    font-size:12.5px;
+    color:var(--paper);
+    margin-top:3px;
+    line-height:1.3;
+    max-width:96px;
+    margin-left:auto;margin-right:auto;
+  }
+
+  /* ---------- SUBJECT LEDGER (binder tabs) ---------- */
+  .ledger{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:60px;
+  }
+  .subject{
+    background:var(--panel);
+    border:1px solid var(--rule-strong);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .subject-head{
+    display:grid;
+    grid-template-columns:54px 1fr auto auto;
+    align-items:center;
+    gap:18px;
+    padding:18px 22px;
+    cursor:default;
+  }
+  .tab-mark{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--bg);
+    background:var(--marigold);
+    width:38px;height:38px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+  }
+  .subject.c .tab-mark{background:var(--terracotta);}
+  .subject.java .tab-mark{background:var(--marigold);}
+  .subject.mysql .tab-mark{background:var(--sage);}
+  .subject.crm .tab-mark{background:#7C8FCB;}
+  .subject.oop .tab-mark{background:#C2719A;}
+  .subject.wp .tab-mark{background:#8B8579;color:var(--paper);}
+
+  .subject-name{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:500;
+  }
+  .subject-name small{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    font-weight:400;
+    margin-top:2px;
+  }
+  .subject-meter{
+    width:140px;
+    height:5px;
+    background:var(--rule);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .subject-meter-fill{
+    height:100%;
+    border-radius:3px;
+  }
+  .subject.c .subject-meter-fill{background:var(--terracotta);}
+  .subject.java .subject-meter-fill{background:var(--marigold);}
+  .subject.mysql .subject-meter-fill{background:var(--sage);}
+  .subject.crm .subject-meter-fill{background:#7C8FCB;}
+  .subject.oop .subject-meter-fill{background:#C2719A;}
+  .subject.wp .subject-meter-fill{background:#8B8579;}
+
+  .subject-figs{
+    text-align:right;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--paper);
+    white-space:nowrap;
+  }
+  .subject-figs .sub{
+    display:block;
+    font-size:10.5px;
+    color:var(--paper-dim);
+    margin-top:2px;
+  }
+
+  .subject-detail{
+    border-top:1px solid var(--rule);
+    padding:16px 22px 20px 94px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    padding:5px 11px;
+    border-radius:6px;
+    border:1px solid var(--rule-strong);
+    color:#C9C3B6;
+    background:var(--panel-raised);
+  }
+  .chip b{color:var(--paper);font-weight:700;}
+
+  /* ---------- FLAGSHIP ---------- */
+  .flagship{
+    background:var(--panel);
+    border:1px solid var(--rule-strong);
+    border-radius:12px;
+    padding:32px;
+    margin-bottom:60px;
+    position:relative;
+  }
+  .flagship::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:4px;
+    background:#7C8FCB;
+    border-radius:0;
+  }
+  .flagship-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#9AA8DD;
+    margin:0 0 10px;
+  }
+  .flagship h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0 0 10px;
+  }
+  .flagship p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:#C9C3B6;
+    max-width:640px;
+    margin:0 0 22px;
+  }
+  .flagship-stages{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .stage{
+    background:var(--panel-raised);
+    border-radius:8px;
+    padding:14px 16px;
+    border:1px solid var(--rule);
+  }
+  .stage-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#9AA8DD;
+  }
+  .stage-name{
+    font-size:13.5px;
+    margin-top:4px;
+    color:var(--paper);
+  }
+  .stage-tag{
+    font-size:11.5px;
+    color:var(--paper-dim);
+    margin-top:6px;
+  }
+
+  /* ---------- COMPOSITION CHART ---------- */
+  .composition{
+    margin-bottom:60px;
+  }
+  .comp-bar{
+    display:flex;
+    height:34px;
+    border-radius:7px;
+    overflow:hidden;
+    margin-bottom:14px;
+  }
+  .comp-seg{height:100%;}
+  .comp-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px 26px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    color:#C9C3B6;
+  }
+  .legend-swatch{
+    width:10px;height:10px;border-radius:2px;
+  }
+  .legend-item b{color:var(--paper);font-weight:600;}
+
+  /* ---------- FOOTER NOTE ---------- */
+  .footnote{
+    border-top:1px solid var(--rule-strong);
+    padding-top:24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--paper-dim);
+    line-height:1.8;
+  }
+  .footnote .dot{color:var(--marigold);margin-right:8px;}
+
+  @media (max-width:720px){
+    .page{padding:40px 20px 80px;}
+    h1{font-size:32px;}
+    .hero{grid-template-columns:1fr;}
+    .repo-stamp{text-align:left;}
+    .stat-strip{grid-template-columns:repeat(2,1fr);}
+    .subject-head{grid-template-columns:44px 1fr;row-gap:10px;}
+    .subject-meter{display:none;}
+    .subject-figs{text-align:left;grid-column:2;}
+    .subject-detail{padding-left:22px;}
+    .flagship-stages{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h2 class="sr-only">A coursework repository profile for Aaryaa Tugaonkar's BCA studies, showing subject breakdowns across C, Java, MySQL, OOP, web programming, and the NexaNova CRM project, with a semester timeline and file composition chart.</h2>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Repository profile</p>
+      <h1>Aaryaa Tugaonkar's<br><em>FBS coursework ledger</em></h1>
+      <p class="hero-desc">A single working repo carrying a full semester of computer science labs — <code>C Programming</code>, <code>Java</code>, <code>MySQL</code>, <code>OOP</code>, <code>WP</code> — plus an in-progress capstone, NexaNova CRM, tracked task by task.</p>
+    </div>
+    <div class="repo-stamp">
+      RN7814 / Aaryaa-Tugaonkar_FBS_work<br>
+      <span class="branch-row">branch: main</span>
+      <div class="commit">41f97a1</div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat"><span class="num">1,234</span><span class="label">tracked files</span></div>
+    <div class="stat"><span class="num">152</span><span class="label">.c programs</span></div>
+    <div class="stat"><span class="num">136</span><span class="label">.java sources</span></div>
+    <div class="stat"><span class="num">96</span><span class="label">HTML pages</span></div>
+    <div class="stat"><span class="num">6</span><span class="label">subjects in flight</span></div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-wrap">
+    <div class="section-head">
+      <h2 class="section-title">Semester, week by week</h2>
+      <span class="section-sub">April → June</span>
+    </div>
+    <div class="timeline">
+      <div class="timeline-track"></div>
+      <div class="tl-entries">
+        <div class="tl-entry">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Apr 22</div>
+          <div class="tl-topic">Inheritance test</div>
+        </div>
+        <div class="tl-entry">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Apr 27</div>
+          <div class="tl-topic">Polymorphism, Employee</div>
+        </div>
+        <div class="tl-entry">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Apr 29</div>
+          <div class="tl-topic">Abstract classes</div>
+        </div>
+        <div class="tl-entry sage">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Jun 01</div>
+          <div class="tl-topic">DS — stack</div>
+        </div>
+        <div class="tl-entry sage">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Jun 03</div>
+          <div class="tl-topic">Circular queue</div>
+        </div>
+        <div class="tl-entry sage">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Jun 04</div>
+          <div class="tl-topic">Singly linked list</div>
+        </div>
+        <div class="tl-entry sage">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Jun 08</div>
+          <div class="tl-topic">Doubly linked list</div>
+        </div>
+        <div class="tl-entry sage">
+          <div class="tl-dot"></div>
+          <div class="tl-month">Jun 10</div>
+          <div class="tl-topic">Sorting techniques</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBJECT LEDGER -->
+  <div class="section-head">
+    <h2 class="section-title">Subject ledger</h2>
+    <span class="section-sub">6 folders</span>
+  </div>
+  <div class="ledger">
+
+    <div class="subject c">
+      <div class="subject-head">
+        <div class="tab-mark">C</div>
+        <div class="subject-name">C Programming<small>Foundations — loops, arrays, recursion</small></div>
+        <div class="subject-meter"><div class="subject-meter-fill" style="width:100%"></div></div>
+        <div class="subject-figs">320 files<span class="sub">49 MB</span></div>
+      </div>
+      <div class="subject-detail">
+        <span class="chip"><b>10</b> assignment sets</span>
+        <span class="chip"><b>127</b> .c programs</span>
+        <span class="chip">Assignment 6 alone: <b>35</b> programs</span>
+        <span class="chip">includes Test / Set B + Lab work</span>
+      </div>
+    </div>
+
+    <div class="subject java">
+      <div class="subject-head">
+        <div class="tab-mark">Jv</div>
+        <div class="subject-name">Java<small>C→Java bridge, OOP classwork, data structures</small></div>
+        <div class="subject-meter"><div class="subject-meter-fill" style="width:97%"></div></div>
+        <div class="subject-figs">479 files<span class="sub">11 MB</span></div>
+      </div>
+      <div class="subject-detail">
+        <span class="chip"><b>16</b> dated classwork sessions</span>
+        <span class="chip">Employee/HR/Admin inheritance hierarchy</span>
+        <span class="chip">Stack → Queue → SLL → DLL → Sorting</span>
+        <span class="chip">package practice: ind, uk, usa, p1</span>
+      </div>
+    </div>
+
+    <div class="subject mysql">
+      <div class="subject-head">
+        <div class="tab-mark">Db</div>
+        <div class="subject-name">MySQL<small>Query labs and a captured web-store case study</small></div>
+        <div class="subject-meter"><div class="subject-meter-fill" style="width:30%"></div></div>
+        <div class="subject-figs">147 files<span class="sub">19 MB</span></div>
+      </div>
+      <div class="subject-detail">
+        <span class="chip">Assignment 0 in progress</span>
+        <span class="chip">WWE SuperCard store page captured for reference</span>
+      </div>
+    </div>
+
+    <div class="subject oop">
+      <div class="subject-head">
+        <div class="tab-mark">Op</div>
+        <div class="subject-name">OOP theory<small>Four pillars, written up as standalone PDFs</small></div>
+        <div class="subject-meter"><div class="subject-meter-fill" style="width:18%"></div></div>
+        <div class="subject-figs">6 files<span class="sub">33 MB</span></div>
+      </div>
+      <div class="subject-detail">
+        <span class="chip">Object</span>
+        <span class="chip">Abstraction</span>
+        <span class="chip">Encapsulation</span>
+        <span class="chip">Inheritance</span>
+        <span class="chip">Polymorphism</span>
+        <span class="chip">+ concepts primer</span>
+      </div>
+    </div>
+
+    <div class="subject wp">
+      <div class="subject-head">
+        <div class="tab-mark">Wp</div>
+        <div class="subject-name">Web programming<small>Axios fetch practice against a live products API</small></div>
+        <div class="subject-meter"><div class="subject-meter-fill" style="width:6%"></div></div>
+        <div class="subject-figs">1 file<span class="sub">8 KB</span></div>
+      </div>
+      <div class="subject-detail">
+        <span class="chip">single-page Axios + table render demo</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FLAGSHIP -->
+  <div class="flagship">
+    <p class="flagship-eyebrow">Capstone in progress</p>
+    <h3>NexaNova — student admission CRM</h3>
+    <p>The repo's largest standing build: a Java + MySQL admissions CRM moving from groundwork into a real Spring Boot service, tracked here task by task rather than as a single drop.</p>
+    <div class="flagship-stages">
+      <div class="stage">
+        <div class="stage-num">Task 1</div>
+        <div class="stage-name">Foundations</div>
+        <div class="stage-tag">early scaffolding</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Task 2</div>
+        <div class="stage-name">Design pass</div>
+        <div class="stage-tag">structure firming up</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Task 3</div>
+        <div class="stage-name">Spring Boot build</div>
+        <div class="stage-tag">Maven + frontend + src, live workspace</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPOSITION -->
+  <div class="composition">
+    <div class="section-head">
+      <h2 class="section-title">What's actually in here</h2>
+      <span class="section-sub">by file type</span>
+    </div>
+    <div class="comp-bar">
+      <div class="comp-seg" style="width:17.4%;background:#C2592E;" title=".c — 152"></div>
+      <div class="comp-seg" style="width:16.9%;background:#7A8FA6;" title=".exe — 147"></div>
+      <div class="comp-seg" style="width:15.6%;background:#F0A23C;" title=".java — 136"></div>
+      <div class="comp-seg" style="width:14.3%;background:#6F9A82;" title=".class — 125"></div>
+      <div class="comp-seg" style="width:11.0%;background:#7C8FCB;" title=".html — 96"></div>
+      <div class="comp-seg" style="width:24.8%;background:#3A4049;" title="other — png, jar, pdf, jpg, etc."></div>
+    </div>
+    <div class="comp-legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:#C2592E;"></span>.c source <b>152</b></span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#7A8FA6;"></span>compiled .exe <b>147</b></span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#F0A23C;"></span>.java source <b>136</b></span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#6F9A82;"></span>.class bytecode <b>125</b></span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#7C8FCB;"></span>.html <b>96</b></span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#3A4049;"></span>assets &amp; docs <b>304</b></span>
+    </div>
+  </div>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote">
+    <div><span class="dot">·</span>NexaNova/3rd Task ships its own Maven distribution and target/ build output alongside source — a live, buildable workspace rather than a snapshot.</div>
+    <div><span class="dot">·</span>Compiled artefacts (.class, .exe, .jar) are committed next to source throughout — this is a working lab folder, not a curated showcase.</div>
+    <div><span class="dot">·</span>Generated from commit 41f97a1 on RN7814/Aaryaa-Tugaonkar_FBS_work.</div>
+  </div>
+
+</div>
+</body>
+</html>
