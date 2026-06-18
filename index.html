@@ -420,6 +420,67 @@
   }
   .footnote .dot{color:var(--marigold);margin-right:8px;}
 
+  /* ---------- LINK BEHAVIOR ---------- */
+  a{color:inherit;text-decoration:none;}
+  .subject-link{
+    display:block;
+    transition:background 0.15s ease;
+  }
+  .subject-link:hover{
+    background:var(--panel-raised);
+  }
+  .subject-link:hover .subject-name{color:var(--marigold);}
+  .subject-link:focus-visible{
+    outline:2px solid var(--marigold);
+    outline-offset:-2px;
+  }
+  .chip-link{
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .chip-link:hover{
+    border-color:var(--marigold);
+    color:var(--paper);
+  }
+  .chip-link:focus-visible{
+    outline:2px solid var(--marigold);
+    outline-offset:1px;
+  }
+  .tl-link{
+    display:block;
+    padding:8px 4px;
+    margin:-8px -4px;
+    border-radius:6px;
+    transition:background 0.15s ease;
+  }
+  .tl-link:hover{
+    background:var(--panel-raised);
+  }
+  .tl-link:hover .tl-topic{color:var(--marigold);}
+  .tl-link:focus-visible{
+    outline:2px solid var(--marigold);
+    outline-offset:1px;
+  }
+  .stage-link{
+    display:block;
+    transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  .stage-link:hover{
+    border-color:var(--marigold);
+    background:#262d38;
+  }
+  .stage-link:hover .stage-name{color:var(--marigold);}
+  .stage-link:focus-visible{
+    outline:2px solid var(--marigold);
+    outline-offset:1px;
+  }
+  .repo-stamp a:hover{color:var(--marigold);}
+  .commit:hover{border-color:var(--marigold);color:var(--marigold);}
+  .ext-icon{
+    font-size:11px;
+    opacity:0.5;
+    margin-left:4px;
+  }
+
   @media (max-width:720px){
     .page{padding:40px 20px 80px;}
     h1{font-size:32px;}
@@ -447,9 +508,9 @@
       <p class="hero-desc">A single working repo carrying a full semester of computer science labs — <code>C Programming</code>, <code>Java</code>, <code>MySQL</code>, <code>OOP</code>, <code>WP</code> — plus an in-progress capstone, NexaNova CRM, tracked task by task.</p>
     </div>
     <div class="repo-stamp">
-      RN7814 / Aaryaa-Tugaonkar_FBS_work<br>
+      <a href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work" target="_blank" rel="noopener">RN7814 / Aaryaa-Tugaonkar_FBS_work</a><br>
       <span class="branch-row">branch: main</span>
-      <div class="commit">41f97a1</div>
+      <a class="commit" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/41f97a101e4980266debb4044a9540288cb394da" target="_blank" rel="noopener">41f97a1</a>
     </div>
   </div>
 
@@ -472,44 +533,60 @@
       <div class="timeline-track"></div>
       <div class="tl-entries">
         <div class="tl-entry">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Apr 22</div>
-          <div class="tl-topic">Inheritance test</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/April_22%20Inheritance_Test" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Apr 22</div>
+            <div class="tl-topic">Inheritance test</div>
+          </a>
         </div>
         <div class="tl-entry">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Apr 27</div>
-          <div class="tl-topic">Polymorphism, Employee</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/April_27_Polymorphism_Employee" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Apr 27</div>
+            <div class="tl-topic">Polymorphism, Employee</div>
+          </a>
         </div>
         <div class="tl-entry">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Apr 29</div>
-          <div class="tl-topic">Abstract classes</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/April_29_Polymorphism%20Abstract_Class%26Methods" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Apr 29</div>
+            <div class="tl-topic">Abstract classes</div>
+          </a>
         </div>
         <div class="tl-entry sage">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Jun 01</div>
-          <div class="tl-topic">DS — stack</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_01_DS-Stack" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Jun 01</div>
+            <div class="tl-topic">DS — stack</div>
+          </a>
         </div>
         <div class="tl-entry sage">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Jun 03</div>
-          <div class="tl-topic">Circular queue</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_03_DS-Circular_Queue" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Jun 03</div>
+            <div class="tl-topic">Circular queue</div>
+          </a>
         </div>
         <div class="tl-entry sage">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Jun 04</div>
-          <div class="tl-topic">Singly linked list</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_04_DS-SLL" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Jun 04</div>
+            <div class="tl-topic">Singly linked list</div>
+          </a>
         </div>
         <div class="tl-entry sage">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Jun 08</div>
-          <div class="tl-topic">Doubly linked list</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_08_DS-DLL" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Jun 08</div>
+            <div class="tl-topic">Doubly linked list</div>
+          </a>
         </div>
         <div class="tl-entry sage">
-          <div class="tl-dot"></div>
-          <div class="tl-month">Jun 10</div>
-          <div class="tl-topic">Sorting techniques</div>
+          <a class="tl-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_10_DS-Sorting_Techniques" target="_blank" rel="noopener">
+            <div class="tl-dot"></div>
+            <div class="tl-month">Jun 10</div>
+            <div class="tl-topic">Sorting techniques</div>
+          </a>
         </div>
       </div>
     </div>
@@ -523,74 +600,86 @@
   <div class="ledger">
 
     <div class="subject c">
-      <div class="subject-head">
-        <div class="tab-mark">C</div>
-        <div class="subject-name">C Programming<small>Foundations — loops, arrays, recursion</small></div>
-        <div class="subject-meter"><div class="subject-meter-fill" style="width:100%"></div></div>
-        <div class="subject-figs">320 files<span class="sub">49 MB</span></div>
-      </div>
+      <a class="subject-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming" target="_blank" rel="noopener">
+        <div class="subject-head">
+          <div class="tab-mark">C</div>
+          <div class="subject-name">C Programming<small>Foundations — loops, arrays, recursion</small></div>
+          <div class="subject-meter"><div class="subject-meter-fill" style="width:100%"></div></div>
+          <div class="subject-figs">320 files<span class="sub">49 MB</span></div>
+        </div>
+      </a>
       <div class="subject-detail">
-        <span class="chip"><b>10</b> assignment sets</span>
-        <span class="chip"><b>127</b> .c programs</span>
-        <span class="chip">Assignment 6 alone: <b>35</b> programs</span>
-        <span class="chip">includes Test / Set B + Lab work</span>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming/Assignments" target="_blank" rel="noopener"><b>10</b> assignment sets</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming/Assignments/Assignment%206" target="_blank" rel="noopener">Assignment 6 alone: <b>35</b> programs</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming/Lab" target="_blank" rel="noopener">Lab work</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming/Test" target="_blank" rel="noopener">Test / Set B</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/C%20Programming/Project%20A" target="_blank" rel="noopener">Project A</a>
       </div>
     </div>
 
     <div class="subject java">
-      <div class="subject-head">
-        <div class="tab-mark">Jv</div>
-        <div class="subject-name">Java<small>C→Java bridge, OOP classwork, data structures</small></div>
-        <div class="subject-meter"><div class="subject-meter-fill" style="width:97%"></div></div>
-        <div class="subject-figs">479 files<span class="sub">11 MB</span></div>
-      </div>
+      <a class="subject-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java" target="_blank" rel="noopener">
+        <div class="subject-head">
+          <div class="tab-mark">Jv</div>
+          <div class="subject-name">Java<small>C→Java bridge, OOP classwork, data structures</small></div>
+          <div class="subject-meter"><div class="subject-meter-fill" style="width:97%"></div></div>
+          <div class="subject-figs">479 files<span class="sub">11 MB</span></div>
+        </div>
+      </a>
       <div class="subject-detail">
-        <span class="chip"><b>16</b> dated classwork sessions</span>
-        <span class="chip">Employee/HR/Admin inheritance hierarchy</span>
-        <span class="chip">Stack → Queue → SLL → DLL → Sorting</span>
-        <span class="chip">package practice: ind, uk, usa, p1</span>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork" target="_blank" rel="noopener"><b>16</b> dated classwork sessions</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/Assignments/src/assignment_1" target="_blank" rel="noopener">Employee/HR/Admin inheritance hierarchy</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/ClassWork/June_01_DS-Stack" target="_blank" rel="noopener">Stack → Queue → SLL → DLL → Sorting</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/Packages" target="_blank" rel="noopener">package practice: ind, uk, usa, p1</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/Java/C%20TO%20JAVA" target="_blank" rel="noopener">C → Java bridge set</a>
       </div>
     </div>
 
     <div class="subject mysql">
-      <div class="subject-head">
-        <div class="tab-mark">Db</div>
-        <div class="subject-name">MySQL<small>Query labs and a captured web-store case study</small></div>
-        <div class="subject-meter"><div class="subject-meter-fill" style="width:30%"></div></div>
-        <div class="subject-figs">147 files<span class="sub">19 MB</span></div>
-      </div>
+      <a class="subject-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/MySQL" target="_blank" rel="noopener">
+        <div class="subject-head">
+          <div class="tab-mark">Db</div>
+          <div class="subject-name">MySQL<small>Query labs and a captured web-store case study</small></div>
+          <div class="subject-meter"><div class="subject-meter-fill" style="width:30%"></div></div>
+          <div class="subject-figs">147 files<span class="sub">19 MB</span></div>
+        </div>
+      </a>
       <div class="subject-detail">
-        <span class="chip">Assignment 0 in progress</span>
-        <span class="chip">WWE SuperCard store page captured for reference</span>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/MySQL/Assignment%200" target="_blank" rel="noopener">Assignment 0 in progress</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/MySQL" target="_blank" rel="noopener">WWE SuperCard store page captured for reference</a>
       </div>
     </div>
 
     <div class="subject oop">
-      <div class="subject-head">
-        <div class="tab-mark">Op</div>
-        <div class="subject-name">OOP theory<small>Four pillars, written up as standalone PDFs</small></div>
-        <div class="subject-meter"><div class="subject-meter-fill" style="width:18%"></div></div>
-        <div class="subject-figs">6 files<span class="sub">33 MB</span></div>
-      </div>
+      <a class="subject-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">
+        <div class="subject-head">
+          <div class="tab-mark">Op</div>
+          <div class="subject-name">OOP theory<small>Four pillars, written up as standalone PDFs</small></div>
+          <div class="subject-meter"><div class="subject-meter-fill" style="width:18%"></div></div>
+          <div class="subject-figs">6 files<span class="sub">33 MB</span></div>
+        </div>
+      </a>
       <div class="subject-detail">
-        <span class="chip">Object</span>
-        <span class="chip">Abstraction</span>
-        <span class="chip">Encapsulation</span>
-        <span class="chip">Inheritance</span>
-        <span class="chip">Polymorphism</span>
-        <span class="chip">+ concepts primer</span>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">Object</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">Abstraction</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">Encapsulation</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">Inheritance</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">Polymorphism</a>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/OOP" target="_blank" rel="noopener">+ concepts primer</a>
       </div>
     </div>
 
     <div class="subject wp">
-      <div class="subject-head">
-        <div class="tab-mark">Wp</div>
-        <div class="subject-name">Web programming<small>Axios fetch practice against a live products API</small></div>
-        <div class="subject-meter"><div class="subject-meter-fill" style="width:6%"></div></div>
-        <div class="subject-figs">1 file<span class="sub">8 KB</span></div>
-      </div>
+      <a class="subject-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/WP" target="_blank" rel="noopener">
+        <div class="subject-head">
+          <div class="tab-mark">Wp</div>
+          <div class="subject-name">Web programming<small>Axios fetch practice against a live products API</small></div>
+          <div class="subject-meter"><div class="subject-meter-fill" style="width:6%"></div></div>
+          <div class="subject-figs">1 file<span class="sub">8 KB</span></div>
+        </div>
+      </a>
       <div class="subject-detail">
-        <span class="chip">single-page Axios + table render demo</span>
+        <a class="chip chip-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/WP" target="_blank" rel="noopener">single-page Axios + table render demo</a>
       </div>
     </div>
 
@@ -602,21 +691,21 @@
     <h3>NexaNova — student admission CRM</h3>
     <p>The repo's largest standing build: a Java + MySQL admissions CRM moving from groundwork into a real Spring Boot service, tracked here task by task rather than as a single drop.</p>
     <div class="flagship-stages">
-      <div class="stage">
+      <a class="stage stage-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/NexaNovaa/1st%20Task" target="_blank" rel="noopener">
         <div class="stage-num">Task 1</div>
         <div class="stage-name">Foundations</div>
         <div class="stage-tag">early scaffolding</div>
-      </div>
-      <div class="stage">
+      </a>
+      <a class="stage stage-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/NexaNovaa/2nd%20Task" target="_blank" rel="noopener">
         <div class="stage-num">Task 2</div>
         <div class="stage-name">Design pass</div>
         <div class="stage-tag">structure firming up</div>
-      </div>
-      <div class="stage">
+      </a>
+      <a class="stage stage-link" href="https://github.com/RN7814/Aaryaa-Tugaonkar_FBS_work/tree/main/NexaNovaa/3rd%20Task" target="_blank" rel="noopener">
         <div class="stage-num">Task 3</div>
         <div class="stage-name">Spring Boot build</div>
         <div class="stage-tag">Maven + frontend + src, live workspace</div>
-      </div>
+      </a>
     </div>
   </div>
 
