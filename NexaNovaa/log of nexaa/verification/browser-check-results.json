@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-08T05:43:12.963Z",
+  "passed": 23,
+  "checks": [
+    "Anonymous app opens login",
+    "Invalid credentials display useful error",
+    "Dashboard has four real metrics",
+    "Enquiry search filters records",
+    "Active enquiry exposes call action",
+    "Stage filter works",
+    "Browser form creates a saved enquiry",
+    "HTML-looking remarks are escaped text",
+    "Browser call form saves and refreshes history",
+    "Admission balance preview updates",
+    "Converted enquiry hides write actions",
+    "Printable receipt shows correct balance",
+    "Print layout hides screen buttons",
+    "View renders: Follow-ups",
+    "View renders: Admissions",
+    "View renders: Reports",
+    "View renders: Team",
+    "View renders: Courses",
+    "Mobile workspace has no page overflow",
+    "Manager UI is read-only",
+    "Manager has no team admin navigation",
+    "Counselor reports only own records",
+    "No browser JavaScript or CSP errors"
+  ],
+  "errors": []
+}

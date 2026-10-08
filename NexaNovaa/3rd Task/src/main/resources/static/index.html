@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexaanova · Admissions CRM</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="module" src="/assets/js/app.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">N</span><span>Nexaanova<small>ADMISSIONS CRM</small></span></a>
+      <p class="nav-label">WORKSPACE</p>
+      <nav aria-label="Main navigation" id="navigation">
+        <a href="#dashboard" data-view="dashboard"><span aria-hidden="true">◫</span>Overview</a>
+        <a href="#leads" data-view="leads"><span aria-hidden="true">◉</span>Enquiries</a>
+        <a href="#followups" data-view="followups"><span aria-hidden="true">◷</span>Follow-ups</a>
+        <a href="#admissions" data-view="admissions"><span aria-hidden="true">▤</span>Admissions</a>
+        <a href="#reports" data-view="reports"><span aria-hidden="true">▥</span>Reports</a>
+        <a href="#users" data-view="users" class="admin-only hidden"><span aria-hidden="true">♧</span>Team</a>
+        <a href="#courses" data-view="courses" class="admin-only hidden"><span aria-hidden="true">▱</span>Courses</a>
+      </nav>
+      <div class="sidebar-note"><span class="status-dot"></span> A simpler admission journey<p>One student, one next step.</p></div>
+      <div class="profile"><span id="avatar" class="avatar">N</span><div><strong id="user-name">Loading…</strong><small id="user-role"></small></div><button class="icon-button" id="logout" title="Sign out" aria-label="Sign out">↪</button></div>
+    </aside>
+    <main class="main-content">
+      <header class="page-header"><div><p class="eyebrow">YOUR ADMISSIONS WORKSPACE</p><h1 id="page-title">Overview</h1><p id="page-description" class="muted"></p></div><div class="header-actions"><span class="today" id="today"></span><button class="btn primary hidden" id="page-action"></button></div></header>
+      <div id="sample-notice" class="notice hidden">Practice workspace · Includes fictional sample records. Your changes are saved in the local database.</div>
+      <div id="read-only-notice" class="notice hidden">Manager view · You can review team activity and reports.</div>
+      <section id="content" aria-label="Workspace content"><p class="loading">Loading your workspace…</p></section>
+      <footer class="page-footer">Nexaanova · Admissions, with a personal touch.<span>All times are in IST.</span></footer>
+    </main>
+  </div>
+  <dialog id="modal"><header class="modal-header"><div><p class="eyebrow">NEXAANOVA WORKSPACE</p><h2 id="modal-title"></h2></div><button class="icon-button" id="close-modal" aria-label="Close dialog">×</button></header><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+</body>
+</html>

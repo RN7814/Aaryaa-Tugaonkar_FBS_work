@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-08T05:50:21.135Z",
+  "passed": 7,
+  "checks": [
+    "Lead count preserved",
+    "Course count preserved",
+    "User count preserved",
+    "Call history preserved",
+    "Exact balance preserved",
+    "Admission stage preserved",
+    "Follow-up completion/closure preserved"
+  ],
+  "counts": {
+    "leads": 10,
+    "courses": 4,
+    "users": 5,
+    "admissions": 2
+  }
+}

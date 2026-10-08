@@ -4,7 +4,7 @@ A running log of BCA/B.Sc. Computer Science coursework — lab programs, assignm
 
 🔗 **Styled overview page:** [live link here once GitHub Pages is enabled]
 
-> This repo is a working lab folder, not a curated showcase — compiled output (`.class`, `.exe`, `.jar`) is committed alongside source throughout, and folders are organized the way coursework actually arrived, week by week.
+> Older coursework keeps compiled output beside source. The rebuilt Nexaanova Task 3 tracks source, setup instructions, and verification; generated build output, local databases, and credentials are excluded.
 
 ## What's in here
 
@@ -38,24 +38,30 @@ The `Java/ClassWork` folder is dated, so it doubles as a syllabus trail:
 
 ## NexaNova — student admission CRM
 
-The repo's largest standing build, tracked task by task rather than dropped in as a finished project.
+Updated **8 October 2026**: Task 3 implements a complete local enquiry-to-admission workflow.
 
-- **Task 1 / Task 2** — early scaffolding and design groundwork
-- **Task 3** — a real Spring Boot service, currently the active workspace:
-  - **Backend:** Spring Boot 3.2.0, layered into `model` / `dto` / `config` / `repository` / `service` / `controller`
-  - **Auth:** Spring Security with JWT (`jjwt`)
-  - **Persistence:** Spring Data JPA + MySQL connector
-  - **Frontend:** static role-based dashboards (`admin-dashboard.html`, `counselor-dashboard.html`, `trainer-dashboard.html`, plus reports, leads, and follow-up pages)
-  - Ships its own Maven distribution and `target/` build output alongside source — it's a buildable workspace, not a snapshot
+- **Task 1:** requirements, roles, workflows, and diagrams, preserved as design groundwork.
+- **Task 2:** 17 static prototype pages, preserved as UI references.
+- **Task 3:** Java 17+, Spring Boot 3.5.16, explicit JDBC/DAO SQL, MySQL, servlet sessions, and shared HTML/CSS/JavaScript.
+- **Working:** real login/access checks, enquiries/assignment, calls, IST follow-ups, transactional admission, exact balances, receipts, team/courses, real counts, and basic reports.
+- **Editing:** shared CSS/forms and clear controller/service/DAO layers with a field/stage edit guide.
+- **Verified:** 17 Java checks, 29 API groups, 23 browser groups, seven restart/persistence checks, and responsive previews.
+- **Pending:** CSV import/export, installment ledger, date-range reports, password change/reset, Trainer/Student portals.
 
-### Running Task 3 locally
+[Project journey](NexaNovaa/README.md) · [Improvements](NexaNovaa/3rd%20Task/docs/improvements.md) · [Edit guide](NexaNovaa/3rd%20Task/docs/architecture.md) · [Work log](NexaNovaa/log%20of%20nexaa/README.md)
 
-```bash
-cd "NexaNovaa/3rd Task"
-./mvnw spring-boot:run     # or use the bundled apache-maven-3.9.9 if mvnw isn't set up
+![Nexaanova overview with fictional sample records](NexaNovaa/3rd%20Task/docs/screenshots/overview-desktop.png)
+
+### Running Task 3 locally on Windows
+
+```powershell
+cd 'NexaNovaa/3rd Task'
+.\scripts\run-local.ps1
 ```
 
-You'll need a local MySQL instance and matching connection details in `src/main/resources/application.properties` (not included here — set your own credentials).
+Install JDK 17+ and MySQL Server first; see [Task 3 setup](NexaNovaa/3rd%20Task/README.md) for installation paths and manual configuration. The wrapper handles Maven. The default helper uses a separate localhost database on port 3307; generated credentials stay in the ignored .local folder.
+
+The original Task 3 remains in Git history. Tasks 1/2 and other coursework are preserved.
 
 ## Notes for anyone browsing this
 

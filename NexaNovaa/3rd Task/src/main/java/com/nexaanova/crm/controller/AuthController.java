@@ -1,35 +1,55 @@
 package com.nexaanova.crm.controller;
-import com.nexaanova.crm.dto.LoginRequest;
-import com.nexaanova.crm.dto.LoginResponse;
-import com.nexaanova.crm.model.User;
-import com.nexaanova.crm.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.nexaanova.crm.dao.UserDao;
+import com.nexaanova.crm.model.LoginRequest;
+import com.nexaanova.crm.model.UserAccount;
+import com.nexaanova.crm.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.UUID;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class AuthController {
+    private final UserService service;
+    private final UserDao users;
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    public AuthController(UserService service, UserDao users) { this.service = service; this.users = users; }
 
-    // POST /api/auth/login
+    @GetMapping("/session")
+    public Map<String, Object> session(HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        Long id = (Long) session.getAttribute("userId");
+        UserAccount user = id == null ? null : users.findById(id);
+        if (user != null && !user.getActive()) {
+            session.invalidate();
+            session = request.getSession(true);
+            user = null;
+        }
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("user", user);
+        data.put("csrfToken", session.getAttribute("csrfToken"));
+        return data;
+    }
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
-        User user = userRepository.findAll().stream()
-            .filter(u -> u.getEmail().equals(req.getEmail()) && u.getIsActive())
-            .findFirst()
-            .orElse(null);
+    public Map<String, Object> login(@RequestBody LoginRequest credentials, HttpServletRequest request) {
+        UserAccount user = service.authenticate(credentials.getEmail(), credentials.getPassword());
+        request.changeSessionId();
+        request.getSession().setAttribute("userId", user.getId());
+        request.getSession().setAttribute("csrfToken", UUID.randomUUID().toString());
+        return session(request);
+    }
 
-        if (user == null || !passwordEncoder.matches(req.getPassword(), user.getPasswordHash()))
-            return ResponseEntity.status(401).body("Invalid credentials");
-
-        // Simple token placeholder — replace with JwtUtil in production
-        String token = "token_" + user.getUserId() + "_" + user.getRole();
-        return ResponseEntity.ok(new LoginResponse(token, user.getRole().name(), user.getFullName(), user.getUserId()));
+    @PostMapping("/logout")
+    public Map<String, String> logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return Map.of("message", "Signed out.");
     }
 }

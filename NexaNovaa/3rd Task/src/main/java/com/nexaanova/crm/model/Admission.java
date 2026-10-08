@@ -1,24 +1,102 @@
 package com.nexaanova.crm.model;
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity @Table(name = "admissions")
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+// Plain Java model: fields and explicit getters/setters.
 public class Admission {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long admissionId;
-    @OneToOne(fetch=FetchType.LAZY) @JoinColumn(name="enquiry_id", unique=true, nullable=false) private Enquiry enquiry;
-    @Column(nullable=false, length=100) private String studentName;
-    @ManyToOne(fetch=FetchType.LAZY) @JoinColumn(name="course_id", nullable=false) private Course course;
-    @Column(nullable=false, precision=10, scale=2) private BigDecimal totalFees;
-    @Column(nullable=false, precision=10, scale=2) private BigDecimal feesPaid = BigDecimal.ZERO;
-    @Column(nullable=false, length=15) private String paymentStatus = "Pending";
-    @Column(nullable=false, length=10) private String paymentType;
-    private Boolean installment = false;
-    private LocalDate admissionDate = LocalDate.now();
-    @ManyToOne(fetch=FetchType.LAZY) @JoinColumn(name="admitted_by") private User admittedBy;
-    @CreationTimestamp private LocalDateTime createdAt;
+    private Long id;
+    private Long leadId;
+    private String leadName;
+    private Long courseId;
+    private String courseName;
+    private Long userId;
+    private BigDecimal totalFees;
+    private BigDecimal feesPaid;
+    private String paymentMode;
+    private LocalDateTime createdAt;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getLeadId() {
+        return leadId;
+    }
+
+    public void setLeadId(Long leadId) {
+        this.leadId = leadId;
+    }
+
+    public String getLeadName() {
+        return leadName;
+    }
+
+    public void setLeadName(String leadName) {
+        this.leadName = leadName;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public BigDecimal getTotalFees() {
+        return totalFees;
+    }
+
+    public void setTotalFees(BigDecimal totalFees) {
+        this.totalFees = totalFees;
+    }
+
+    public BigDecimal getFeesPaid() {
+        return feesPaid;
+    }
+
+    public void setFeesPaid(BigDecimal feesPaid) {
+        this.feesPaid = feesPaid;
+    }
+
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public BigDecimal getBalance() {
+        return totalFees.subtract(feesPaid);
+    }
 }

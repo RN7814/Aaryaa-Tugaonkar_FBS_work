@@ -1,13 +1,12 @@
 package com.nexaanova.crm.model;
 
-import java.math.BigDecimal;
 
 // Plain Java model: fields and explicit getters/setters.
-public class Course {
+public class UserAccount {
     private Long id;
     private String name;
-    private String duration;
-    private BigDecimal fees;
+    private String email;
+    private String role;
     private boolean active;
 
     public Long getId() {
@@ -26,20 +25,20 @@ public class Course {
         this.name = name;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public BigDecimal getFees() {
-        return fees;
+    public String getRole() {
+        return role;
     }
 
-    public void setFees(BigDecimal fees) {
-        this.fees = fees;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public boolean getActive() {

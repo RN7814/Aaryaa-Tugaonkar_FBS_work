@@ -1,0 +1,8 @@
+target/
+.local/
+.idea/
+.classpath
+.project
+.settings/
+*.log
+application-local.properties
