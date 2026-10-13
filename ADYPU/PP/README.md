@@ -1,7 +1,7 @@
 # ADYPU Python Practice
 
-Save Python programs in this folder. Open `ADYPU-Python.code-workspace` from
-the repository root so VS Code uses this folder as the Python workspace.
+Save Python programs in this folder. Open the `ADYPU/PP` directory in VS Code
+so its Python settings and recommended extensions are applied.
 
 Create the local virtual environment once in the VS Code terminal:
 
@@ -12,5 +12,6 @@ py -m venv .venv
 VS Code will then use `.venv` automatically. Press `F5` to run or debug the
 currently open Python file.
 
-To add the `cpython` Windows Run command, run `setup-vscode.ps1` once from the
-repository root. The normal `code` command continues to open regular VS Code.
+To add the `cpython` Windows Run command, run `setup-vscode.ps1` once. The
+command opens this directory directly, while `code` continues to open regular
+VS Code.

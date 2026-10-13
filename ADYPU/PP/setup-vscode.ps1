@@ -1,14 +1,9 @@
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
-$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
-$workspaceFile = Join-Path $repoRoot "ADYPU-Python.code-workspace"
+$pythonDirectory = (Resolve-Path $PSScriptRoot).Path
 $launcherDirectory = Join-Path $env:LOCALAPPDATA "Microsoft\WindowsApps"
 $pythonLauncher = Join-Path $launcherDirectory "cpython.cmd"
-
-if (-not (Test-Path $workspaceFile)) {
-    throw "Python workspace not found: $workspaceFile"
-}
 
 $codeCommand = Get-Command code -ErrorAction SilentlyContinue
 $codeExeCandidates = @(
@@ -37,9 +32,9 @@ if (-not $codeCommand) {
 }
 
 if ($codeExe) {
-    $pythonLauncherContent = "@echo off`r`nstart `"`" `"$codeExe`" `"$workspaceFile`"`r`n"
+    $pythonLauncherContent = "@echo off`r`nstart `"`" `"$codeExe`" `"$pythonDirectory`"`r`n"
 } else {
-    $pythonLauncherContent = "@echo off`r`ncall code `"$workspaceFile`"`r`n"
+    $pythonLauncherContent = "@echo off`r`ncall code `"$pythonDirectory`"`r`n"
 }
 
 Set-Content -Path $pythonLauncher -Value $pythonLauncherContent -Encoding Ascii
@@ -58,7 +53,7 @@ if (-not $pythonCommand) {
 
 Write-Host "VS Code launch commands are ready:"
 Write-Host "  code     - opens normal VS Code"
-Write-Host "  cpython  - opens $workspaceFile"
+Write-Host "  cpython  - opens $pythonDirectory"
 
 if (-not $pythonCommand) {
     Write-Warning "Python was not found. Install Python before creating the .venv environment."
