@@ -11,3 +11,6 @@ py -m venv .venv
 
 VS Code will then use `.venv` automatically. Press `F5` to run or debug the
 currently open Python file.
+
+To add the `cpython` Windows Run command, run `setup-vscode.ps1` once from the
+repository root. The normal `code` command continues to open regular VS Code.
